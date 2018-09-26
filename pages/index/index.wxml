@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view>
+  <form>
+    <view  style='margin-left: 100rpx;margin-right: 100rpx'>
+      <view class='horizontal'  style='margin-top: 200rpx'>
+        <text class='inputleft' >账号：</text>
+        <input class='inputright' value='{{name}}' id='name' bindinput='bindinput'></input>
+      </view>
+    
+      <view class='horizontal' style='margin-top: 40rpx'>
+        <text class='inputleft' >密码：</text>
+        <input class='inputright' value='{{password}}' id='password' bindinput='bindinput' password='true'></input>
+      </view>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style='margin-top: 40rpx' 
+          class="weui-btn" type="primary" plain="true" form-type='submit'> 登录 </button>
+      <button style='margin-top: 40rpx' bindtap='skip'
+          class="weui-btn" type='default' plain="true"> 注册 </button>
+      <!-- <button class="weui-btn" type="primary" plain="true">按钮</button> -->
+    </view>
+  </form>
+</view>

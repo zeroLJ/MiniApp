@@ -1,0 +1,35 @@
+<!--pages/main/main.wxml-->
+<view >
+  <view  wx:for="{{notes}}" wx:for-item="note" >
+    <view id="{{index}}" class='contain' bindtap='skip'>
+      <view class='horizontal'>
+          <view class='blue'></view>
+          <text class='title'>{{note.title}}</text>  
+        </view>
+
+        <view>
+          <text class='msg'>{{note.message}}</text>  
+        </view>
+        <view>
+          <text class='addTime'>{{note.addTime}}</text>   
+          <view class='divideline'></view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- <view wx:for="{{notes}}" wx:for-item="note">
+    <view class='horizontal'>
+        <view class='blue'></view>
+        <text>{{index + 1}}. {{note.title}}</text>  
+    </view>
+</view> -->
+
+<!-- <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+  <view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
+    <view wx:if="{{i <= j}}">
+      {{i}} * {{j}} = {{i * j}}
+    </view>
+  </view>
+</view> -->

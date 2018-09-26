@@ -1,0 +1,27 @@
+/**app.wxss**/
+@import 'style/weui.wxss';
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.inputleft {
+  width: 150rpx;
+  margin-right: 20rpx;
+}
+
+.inputright {
+  text-align: center;
+  border:1px solid black;
+}
+
+.horizontal{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
