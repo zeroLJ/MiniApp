@@ -104,5 +104,33 @@ Page({
         }
       },
     })
+  },
+  bindViewTap: function(e){
+    var that =this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      success: function(res) {
+        console.log(res)
+        const tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://jhonliu.club/VoiceNote/HeadIconChange',
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            name: app.globalData.name,
+            password: app.globalData.password
+          },
+          success(res) {
+            that.setData({
+              imagePath: tempFilePaths[0]
+            })
+            console.log(res)
+          }
+        })
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 })
