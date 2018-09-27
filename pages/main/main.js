@@ -19,22 +19,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
     var that = this
     util.request('https://jhonliu.club/VoiceNote/NoteRefresh', {
       data: '[{}]'
     }, '正在查询数据', function (json) {
-      for(var i = 0; i< json.resultList.length; i++){
-        if(json.resultList[i].message == '' || json.resultList[i].message == undefined){
+      for (var i = 0; i < json.resultList.length; i++) {
+        if (json.resultList[i].message == '' || json.resultList[i].message == undefined) {
           json.resultList[i].message = "点击进行编辑"
         }
-        json.resultList[i].addTime = json.resultList[i].addTime.replace("+"," ")
+        json.resultList[i].addTime = json.resultList[i].addTime.replace("+", " ")
       }
       that.setData({
         notes: json.resultList
@@ -42,6 +35,13 @@ Page({
       console.log(that.data)
       console.log(json)
     })
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   /**

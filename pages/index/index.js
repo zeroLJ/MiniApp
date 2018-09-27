@@ -52,7 +52,10 @@ Page({
     app.globalData.password = this.data.password
     util.request('https://jhonliu.club/VoiceNote/Signin', {
     },'正在登录', function(json){
-      wx.redirectTo({
+      // wx.redirectTo({
+      //   url: './../main/main',
+      // })
+      wx.switchTab({
         url: './../main/main',
       })
     })

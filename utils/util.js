@@ -38,10 +38,11 @@ function request(url,data,showMsg, callback){
     responseType: 'text',
     success: function(res) {
       console.log('success:')
+      console.log(res)
       var a = decodeURIComponent(res.header.data)
       var json = JSON.parse(a);
       if (json.success) {
-          callback(json)
+        callback(json, res.data)
       }else{
         wx.showModal({
           title: '',
@@ -54,8 +55,10 @@ function request(url,data,showMsg, callback){
     fail: function(res) {
       console.log('fail:')
       console.log(res)
-      wx.showToast({
-        title: '网络请求失败',
+      wx.showModal({
+        title: '',
+        content: '网络请求失败',
+        showCancel: false
       })
     },
     complete: function(res) {
