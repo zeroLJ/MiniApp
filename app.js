@@ -1,4 +1,5 @@
 //app.js
+const util = require('utils/util.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -32,6 +33,27 @@ App({
         }
       }
     })
+
+
+    var that = this;
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res)
+        that.globalData.name = res.data.name
+        that.globalData.password = res.data.password
+        // wx.switchTab({
+        //   url: './../main/main',
+        // })
+        util.request('https://jhonliu.club/VoiceNote/Signin', {
+        }, '正在登录', function (json) {
+          wx.switchTab({
+            url: './../main/main',
+          })
+        })
+      },
+    })
+
   },
   globalData: {
     userInfo: null,

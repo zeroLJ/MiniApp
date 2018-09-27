@@ -91,9 +91,16 @@ Page({
         if(res.confirm){
           app.globalData.name = null;
           app.globalData.password = null;
-          wx.redirectTo({
-            url: './../index/index',
-          })
+          wx.removeStorage({
+            key: 'user',
+            success: function(res) {},
+            complete: function (res){
+              console.log(res)
+              wx.redirectTo({
+                url: './../index/index',
+              })
+            }
+          })  
         }
       },
     })

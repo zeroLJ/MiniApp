@@ -55,6 +55,13 @@ Page({
       // wx.redirectTo({
       //   url: './../main/main',
       // })
+      wx.setStorage({
+        key: 'user',
+        data: {
+          name:app.globalData.name,
+          password: app.globalData.password
+        },
+      })
       wx.switchTab({
         url: './../main/main',
       })
