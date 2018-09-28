@@ -2,13 +2,12 @@
 <view >
   <view class='contain'>
     <view class='top'>
-      <input class='input' value='{{json.title}}' id='title' bindinput='bindinput'></input>
+      <input class='input' value='{{json.title}}' id='title' bindinput='bindinput' class='title' placeholder='{{date}}'></input>
       <view class='divideline'></view>
-      <textarea class='msg' value='{{json.message}}' id='message' bindinput='bindinput'></textarea>
+      <textarea class='msg' value='{{json.message}}' id='message' bindinput='bindinput' placeholder='{{tips}}'></textarea>
     </view>
     <view class='bottom'>
-       <button style='margin-top: 10rpx' bindtap='save'
-          class="weui-btn" type="primary" plain="true" > 保存 </button>
+       <button bindtap='save' class="weui-btn" type="primary" plain="true" > 保存 </button>
     </view>
   </view>
 </view>

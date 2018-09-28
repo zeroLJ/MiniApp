@@ -105,5 +105,6 @@ function request(mapjson) {
 
 module.exports = {
   formatTime: formatTime,
-  request : request
+  request : request,
+  isEmpty: isEmpty
 }

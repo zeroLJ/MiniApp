@@ -20,17 +20,17 @@
       {
         "pagePath": "pages/main/main",
         "text": "笔记",
-        "iconPath": "images/b.png",
-        "selectedIconPath": "images/b_selected.png"
+        "iconPath": "images/note.png",
+        "selectedIconPath": "images/note_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "images/a.png",
-        "selectedIconPath": "images/a_selected.png"
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_selected.png"
       }
     ],
     "color": "#8a8a8a",
-    "selectedColor": "#1afa29"
+    "selectedColor": "#56A8FF"
   }
 }

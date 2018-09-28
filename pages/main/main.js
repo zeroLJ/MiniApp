@@ -35,8 +35,10 @@ Page({
       msg:'正在查询数据',
       success: function (json) {
         for (var i = 0; i < json.resultList.length; i++) {
-          if (json.resultList[i].message == '' || json.resultList[i].message == undefined) {
-            json.resultList[i].message = "点击进行编辑"
+          if (util.isEmpty(json.resultList[i].message)) {
+            json.resultList[i].tips = '点击进行编辑'
+          }else{
+            json.resultList[i].tips = json.resultList[i].message
           }
           // json.resultList[i].addTime = json.resultList[i].addTime.replace("+", " ")
         }
@@ -87,6 +89,11 @@ Page({
     var json = this.data.notes[e.currentTarget.id]
     wx.navigateTo({
       url: './../note/note?json=' + JSON.stringify(json)
+    })
+  },
+  add: function(e){
+    wx.navigateTo({
+      url: './../note/note?json={}'
     })
   }
 })

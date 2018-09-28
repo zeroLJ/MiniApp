@@ -8,7 +8,7 @@
         </view>
 
         <view>
-          <text class='msg'>{{note.message}}</text>  
+          <text class='msg'>{{note.tips}}</text>  
         </view>
         <view>
           <text class='addTime'>{{note.addTime}}</text>   
@@ -16,6 +16,7 @@
       </view>
     </view>
   </view>
+  <image bindtap="add" class="addButton" src="./../../images/add.png" background-size="cover"></image>
 </view>
 
 

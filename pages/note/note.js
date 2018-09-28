@@ -1,5 +1,6 @@
 // pages/note/note.js
 const util = require('../../utils/util.js')
+const dateutil = require('../../utils/dateutil.js')
 Page({
 
   /**
@@ -17,9 +18,16 @@ Page({
     console.log(json)
     this.setData({
       json: json,
-      message: json.message,
-      title : json.title
+      date: dateutil.getStringDate(new Date())+'的笔记',
+      tips: '点击输入内容',
+      isNew: util.isEmpty(json.addTime)? true:false
     })
+    if(!this.data.isNew){
+      this.setData({
+        message: json.message,
+        title: json.title,
+      })
+    }
     console.log(this.data)
   },
 
@@ -27,7 +35,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -87,10 +95,21 @@ Page({
 
   save: function(e){
     var json = this.data.json
-    json.message = encodeURI(this.data.message)
-    json.title = encodeURI(this.data.title)
+    json.message = util.isEmpty(this.data.message) ? '' : encodeURI(this.data.message)
+    if (util.isEmpty(this.data.title)){
+      json.title = encodeURI(this.data.date)
+    }else{
+      json.title = encodeURI(this.data.title)
+    }
+    var url
+    if(this.data.isNew){
+      url = 'https://jhonliu.club/VoiceNote/NoteAdd'
+    }else{
+      url = 'https://jhonliu.club/VoiceNote/NoteUpdate'
+      json.tips = ''
+    }
     util.request({
-      url:'https://jhonliu.club/VoiceNote/NoteUpdate', 
+      url: url, 
       data:{
         data: JSON.stringify(json)
       },
