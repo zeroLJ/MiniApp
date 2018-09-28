@@ -96,21 +96,24 @@ Page({
       })
       return;
     }
-    util.request('https://jhonliu.club/VoiceNote/Login', {
-      name: this.data.name,
-      password: this.data.password
-    }, '正在注册', function (json) {
-      wx.showToast({
-        title: '注册成功',
-        duration: 2000,
-        mask: true,
-        complete: function (res) {
-          setTimeout(function(){
-            wx.navigateBack({
-            })
-          },2000)
-        },
-      })
+    getApp().globalData.name = this.data.name
+    getApp().globalData.password = this.data.password
+    util.request({
+      url:'https://jhonliu.club/VoiceNote/Login', 
+      msg: '正在注册',
+      success: function (json) {
+        wx.showToast({
+          title: '注册成功',
+          duration: 2000,
+          mask: true,
+          complete: function (res) {
+            setTimeout(function(){
+              wx.navigateBack({
+              })
+            },2000)
+          },
+        })
+      }
     })
 
   }

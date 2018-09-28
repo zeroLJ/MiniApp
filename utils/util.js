@@ -14,13 +14,27 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+function isEmpty(str){
+  if (str == "" || str == undefined || str == null){
+    return true;
+  }else{
+    return false;
+  }
+}
 
-
-function request(url,data,showMsg,success,fail){
-  if(showMsg!=''){
+function request(mapjson) {
+  // res.showMsg != undefined && res.showMsg
+  var showMsg = mapjson.msg
+  var url = mapjson.url
+  var data = mapjson.data
+  if (!isEmpty(showMsg)) {
+    console.log("asd")
     wx.showLoading({
       title: showMsg,
     })
+  }
+  if(isEmpty(data)){
+    data = {}
   }
   const app = getApp()
   data.name = app.globalData.name
@@ -36,8 +50,9 @@ function request(url,data,showMsg,success,fail){
     method: 'GET',
     dataType: 'json',
     responseType: 'text',
-    success: function(res) {
+    success: function (res) {
       console.log('success:')
+      //可根据后台返回的数据来取相应的字段
       var a = decodeURIComponent(res.header.data)
       // if (a.indexOf("+")>=0){
       //   var b = "+"
@@ -45,37 +60,43 @@ function request(url,data,showMsg,success,fail){
       // }
 
       //从后端传来的字符串中的空格会变成+号，故需替换回来
-      while(a.indexOf("+")>=0){
+      while (a.indexOf("+") >= 0) {
         a = a.replace("+", " ")
       }
-    
+
       var json = JSON.parse(a);
       if (json.success) {
-        success(json, res.data)
-      }else{
-        if(fail==null || fail == undefined){
+        if(!isEmpty(mapjson.success)){
+          mapjson.success(json)
+        }
+      } else {
+        if (isEmpty(mapjson.error)) {
           wx.showModal({
             title: '',
             content: json.msg,
             showCancel: false
           })
-        }else{
-          fail(json)
+        } else {
+          mapjson.error(json)
         }
       }
-      console.log(json);    
+      console.log(json);
     },
-    fail: function(res) {
+    fail: function (res) {
       console.log('fail:')
       console.log(res)
-      wx.showModal({
-        title: '',
-        content: '网络请求失败',
-        showCancel: false
-      })
+      if (isEmpty(mapjson.fail)) {
+        wx.showModal({
+          title: '',
+          content: '网络请求失败',
+          showCancel: false
+        })
+      }else{
+        mapjson.fail(res)
+      }
     },
-    complete: function(res) {
-      if (showMsg != '') {
+    complete: function (res) {
+      if (!isEmpty(showMsg)) {
         wx.hideLoading()
       }
     },

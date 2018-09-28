@@ -27,20 +27,25 @@ Page({
    */
   onShow: function () {
     var that = this
-    util.request('https://jhonliu.club/VoiceNote/NoteRefresh', {
-      data: '[{}]'
-    }, '正在查询数据', function (json) {
-      for (var i = 0; i < json.resultList.length; i++) {
-        if (json.resultList[i].message == '' || json.resultList[i].message == undefined) {
-          json.resultList[i].message = "点击进行编辑"
+    util.request({
+      url:'https://jhonliu.club/VoiceNote/NoteRefresh',
+      data: {
+        data: '[{}]'
+      },
+      msg:'正在查询数据',
+      success: function (json) {
+        for (var i = 0; i < json.resultList.length; i++) {
+          if (json.resultList[i].message == '' || json.resultList[i].message == undefined) {
+            json.resultList[i].message = "点击进行编辑"
+          }
+          // json.resultList[i].addTime = json.resultList[i].addTime.replace("+", " ")
         }
-        // json.resultList[i].addTime = json.resultList[i].addTime.replace("+", " ")
+        that.setData({
+          notes: json.resultList
+        })
+        console.log(that.data)
+        console.log(json)
       }
-      that.setData({
-        notes: json.resultList
-      })
-      console.log(that.data)
-      console.log(json)
     })
   },
 

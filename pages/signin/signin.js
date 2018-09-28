@@ -50,21 +50,24 @@ Page({
     //app.globalData.userInfo = e.detail.userInfo
     app.globalData.name = this.data.name
     app.globalData.password = this.data.password
-    util.request('https://jhonliu.club/VoiceNote/Signin', {
-    }, '正在登录', function (json) {
-      // wx.redirectTo({
-      //   url: './../main/main',
-      // })
-      wx.setStorage({
-        key: 'user',
-        data: {
-          name: app.globalData.name,
-          password: app.globalData.password
-        },
-      })
-      wx.switchTab({
-        url: './../main/main',
-      })
+    util.request({
+      url:'https://jhonliu.club/VoiceNote/Signin',
+      msg:'正在登录',
+      success: function (json) {
+        // wx.redirectTo({
+        //   url: './../main/main',
+        // })
+        wx.setStorage({
+          key: 'user',
+          data: {
+            name: app.globalData.name,
+            password: app.globalData.password
+          },
+        })
+        wx.switchTab({
+          url: './../main/main',
+        })
+      }
     })
   },
   bindinput: function (e) {

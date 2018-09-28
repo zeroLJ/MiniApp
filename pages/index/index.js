@@ -29,19 +29,22 @@ Page({
         // wx.switchTab({
         //   url: './../main/main',
         // })
-        util.request('https://jhonliu.club/VoiceNote/Signin', {
-        }, '', function (json) {
-          setTimeout(function(){
-            wx.switchTab({
-              url: './../main/main',
-            })
-          },1000)
-        }, function(json){
-          setTimeout(function () {
-            wx.redirectTo({
-              url: './../signin/signin',
-            })
-          }, 1000)
+        util.request({
+          url: 'https://jhonliu.club/VoiceNote/Signin',
+          success: function (json) {
+            setTimeout(function(){
+              wx.switchTab({
+                url: './../main/main',
+              })
+            },1000)
+          },
+          error: function(json){
+            setTimeout(function () {
+              wx.redirectTo({
+                url: './../signin/signin',
+              })
+            },1000)
+          }
         })
       },
       fail: function (res) {
@@ -49,8 +52,7 @@ Page({
           wx.redirectTo({
             url: './../signin/signin',
           })
-        }, 1000)
-       
+        },1000)
       }
     })
   },

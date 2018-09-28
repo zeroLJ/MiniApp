@@ -89,21 +89,25 @@ Page({
     var json = this.data.json
     json.message = encodeURI(this.data.message)
     json.title = encodeURI(this.data.title)
-    util.request('https://jhonliu.club/VoiceNote/NoteUpdate', {
-      data: JSON.stringify(json),
-      c: '中文数据'
-    }, '正在保存', function (json) {
-      wx.showToast({
-        title: '保存成功',
-        duration: 2000,
-        mask: true,
-        complete: function (res) {
-          setTimeout(function () {
-            wx.navigateBack({
-            })
-          }, 2000)
-        },
-      })
+    util.request({
+      url:'https://jhonliu.club/VoiceNote/NoteUpdate', 
+      data:{
+        data: JSON.stringify(json)
+      },
+      msg: '正在保存',
+      success: function (json) {
+        wx.showToast({
+          title: '保存成功',
+          duration: 2000,
+          mask: true,
+          complete: function (res) {
+            setTimeout(function () {
+              wx.navigateBack({
+              })
+            }, 2000)
+          },
+        })
+      }
     })
   }
 })

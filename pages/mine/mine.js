@@ -140,6 +140,7 @@ Page({
    })
    wx.showToast({
      title: '待实现',
+     icon: 'none'
    })
   }
 })
