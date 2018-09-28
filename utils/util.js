@@ -16,7 +16,7 @@ const formatNumber = n => {
 
 
 
-function request(url,data,showMsg, callback){
+function request(url,data,showMsg,success,fail){
   if(showMsg!=''){
     wx.showLoading({
       title: showMsg,
@@ -38,17 +38,30 @@ function request(url,data,showMsg, callback){
     responseType: 'text',
     success: function(res) {
       console.log('success:')
-      console.log(res)
       var a = decodeURIComponent(res.header.data)
+      // if (a.indexOf("+")>=0){
+      //   var b = "+"
+      //   a = a.replace(new RegExp(b), " ")
+      // }
+
+      //从后端传来的字符串中的空格会变成+号，故需替换回来
+      while(a.indexOf("+")>=0){
+        a = a.replace("+", " ")
+      }
+    
       var json = JSON.parse(a);
       if (json.success) {
-        callback(json, res.data)
+        success(json, res.data)
       }else{
-        wx.showModal({
-          title: '',
-          content: json.msg,
-          showCancel: false
-        })
+        if(fail==null || fail == undefined){
+          wx.showModal({
+            title: '',
+            content: json.msg,
+            showCancel: false
+          })
+        }else{
+          fail(json)
+        }
       }
       console.log(json);    
     },

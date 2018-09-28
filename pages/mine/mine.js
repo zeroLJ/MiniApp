@@ -97,7 +97,7 @@ Page({
             complete: function (res){
               console.log(res)
               wx.redirectTo({
-                url: './../index/index',
+                url: './../signin/signin',
               })
             }
           })  
@@ -111,7 +111,6 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       success: function(res) {
-        console.log(res)
         const tempFilePaths = res.tempFilePaths
         wx.uploadFile({
           url: 'https://jhonliu.club/VoiceNote/HeadIconChange',
@@ -125,12 +124,22 @@ Page({
             that.setData({
               imagePath: tempFilePaths[0]
             })
-            console.log(res)
           }
         })
       },
       fail: function(res) {},
       complete: function(res) {},
     })
+  },
+  onShare: function(e){
+   wx.setTopBarText({
+     text: 'sdsdsd',
+     success: function(res) {},
+     fail: function(res) {},
+     complete: function(res) {console.log("sdsdsd")},
+   })
+   wx.showToast({
+     title: '待实现',
+   })
   }
 })

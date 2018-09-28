@@ -1,89 +1,57 @@
 //index.js
-//获取应用实例
 const app = getApp()
 const util = require('../../utils/util.js')
 Page({
-  data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    name: 'zero',
-    password: '2'
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+   
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    wx.showLoading({
+      title: '正在加载数据',
     })
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        console.log(res)
+        app.globalData.name = res.data.name
+        app.globalData.password = res.data.password
+        // wx.switchTab({
+        //   url: './../main/main',
+        // })
+        util.request('https://jhonliu.club/VoiceNote/Signin', {
+        }, '', function (json) {
+          setTimeout(function(){
+            wx.switchTab({
+              url: './../main/main',
+            })
+          },1000)
+        }, function(json){
+          setTimeout(function () {
+            wx.redirectTo({
+              url: './../signin/signin',
+            })
+          }, 1000)
         })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+      },
+      fail: function (res) {
+        setTimeout(function () {
+          wx.redirectTo({
+            url: './../signin/signin',
           })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    //console.log(get)
-    //app.globalData.userInfo = e.detail.userInfo
-    app.globalData.name = this.data.name
-    app.globalData.password = this.data.password
-    util.request('https://jhonliu.club/VoiceNote/Signin', {
-    },'正在登录', function(json){
-      // wx.redirectTo({
-      //   url: './../main/main',
-      // })
-      wx.setStorage({
-        key: 'user',
-        data: {
-          name:app.globalData.name,
-          password: app.globalData.password
-        },
-      })
-      wx.switchTab({
-        url: './../main/main',
-      })
+        }, 1000)
+       
+      }
     })
   },
-  bindinput: function (e) {
-    console.log(e)
-    var a = e.target.id;
-    var value = e.detail.value.replace(/\s+/g, '')
-    this.setData({
-      [a]: value
-    })
-    return {
-      value: value,
-      cursor: value.length
-    }
-    console.log(this.data)
-  },
-
-  skip: function(e){
-    wx.navigateTo({
-      url: './../login/login',
-    })
-  }
 })

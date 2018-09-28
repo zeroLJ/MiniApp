@@ -6,13 +6,14 @@
     "pages/login/login",
     "pages/note/note",
     "pages/mine/mine",
-    "pages/info/info"
+    "pages/info/info",
+    "pages/signin/signin"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#56A8FF",
+    "navigationBarTitleText": "VoiceNote",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "list": [
