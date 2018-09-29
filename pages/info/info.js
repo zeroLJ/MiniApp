@@ -21,7 +21,7 @@ Page({
     });
     var that = this
     util.request({
-      url:'https://jhonliu.club/VoiceNote/InfoGet', 
+      url:'InfoGet', 
       msg:'正在获取数据', 
       success:function (json) {
         console.log(json)
@@ -111,7 +111,7 @@ Page({
   },
   save: function(e){
     util.request({
-      url:'https://jhonliu.club/VoiceNote/InfoUpdate',
+      url:'InfoUpdate',
       data: {
         birthday: encodeURI(this.data.birthday),
         e_mail: encodeURI(this.data.e_mail) ,

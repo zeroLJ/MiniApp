@@ -51,7 +51,7 @@ Page({
     app.globalData.name = this.data.name
     app.globalData.password = this.data.password
     util.request({
-      url:'https://jhonliu.club/VoiceNote/Signin',
+      url:'Signin',
       msg:'正在登录',
       success: function (json) {
         // wx.redirectTo({

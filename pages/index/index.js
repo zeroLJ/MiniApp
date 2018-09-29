@@ -30,7 +30,7 @@ Page({
         //   url: './../main/main',
         // })
         util.request({
-          url: 'https://jhonliu.club/VoiceNote/Signin',
+          url: 'Signin',
           success: function (json) {
             setTimeout(function(){
               wx.switchTab({

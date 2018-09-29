@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imagePath: "./../../images/a.png",
+    imagePath: "./../../images/user.png",
     nickname: "name"
   },
 
@@ -23,7 +23,7 @@ Page({
    */
   onReady: function () {
     var that = this
-    var url = 'https://jhonliu.club/VoiceNote/HeadIconGet';
+    var url = util.url + 'HeadIconGet';
     url = url + "?name=" + app.globalData.name
     url = url + "&password=" + app.globalData.password
     this.setData({
@@ -113,7 +113,7 @@ Page({
       success: function(res) {
         const tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'https://jhonliu.club/VoiceNote/HeadIconChange',
+          url: util.url + 'HeadIconChange',
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {

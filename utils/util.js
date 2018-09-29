@@ -22,13 +22,23 @@ function isEmpty(str){
   }
 }
 
+
+const URL = 'https://jhonliu.club/VoiceNote/'
 function request(mapjson) {
   // res.showMsg != undefined && res.showMsg
   var showMsg = mapjson.msg
   var url = mapjson.url
   var data = mapjson.data
+  if (isEmpty(url)) {
+    wx.showModal({
+      title: '',
+      content: 'url不能为空！',
+    })
+  }
+  if(url.indexOf('https')!=0){
+    url = URL + url
+  }
   if (!isEmpty(showMsg)) {
-    console.log("asd")
     wx.showLoading({
       title: showMsg,
     })
@@ -106,5 +116,6 @@ function request(mapjson) {
 module.exports = {
   formatTime: formatTime,
   request : request,
-  isEmpty: isEmpty
+  isEmpty: isEmpty,
+  url : URL
 }

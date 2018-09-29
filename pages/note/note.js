@@ -103,9 +103,9 @@ Page({
     }
     var url
     if(this.data.isNew){
-      url = 'https://jhonliu.club/VoiceNote/NoteAdd'
+      url = 'NoteAdd'
     }else{
-      url = 'https://jhonliu.club/VoiceNote/NoteUpdate'
+      url = 'NoteUpdate'
       json.tips = ''
     }
     util.request({

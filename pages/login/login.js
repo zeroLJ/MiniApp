@@ -99,7 +99,7 @@ Page({
     getApp().globalData.name = this.data.name
     getApp().globalData.password = this.data.password
     util.request({
-      url:'https://jhonliu.club/VoiceNote/Login', 
+      url:'Login', 
       msg: '正在注册',
       success: function (json) {
         wx.showToast({

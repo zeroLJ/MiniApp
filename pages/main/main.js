@@ -28,7 +28,7 @@ Page({
   onShow: function () {
     var that = this
     util.request({
-      url:'https://jhonliu.club/VoiceNote/NoteRefresh',
+      url:'NoteRefresh',
       data: {
         data: '[{}]'
       },
