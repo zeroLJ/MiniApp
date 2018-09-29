@@ -7,7 +7,7 @@
       <textarea class='msg' value='{{json.message}}' id='message' bindinput='bindinput' placeholder='{{tips}}'></textarea>
     </view>
     <view class='bottom'>
-       <button bindtap='save' class="weui-btn" type="primary" plain="true" > 保存 </button>
+       <button bindtap='save' class="weui-btn" type="primary" plain="true" style='margin-bottom: 10rpx;margin-left: 20rpx;margin-right: 20rpx'> 保存 </button>
     </view>
   </view>
 </view>
