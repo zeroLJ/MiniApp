@@ -4,10 +4,13 @@
     <view class='top'>
       <input class='input' value='{{json.title}}' id='title' bindinput='bindinput' class='title' placeholder='{{date}}'></input>
       <view class='divideline'></view>
-      <textarea class='msg' value='{{json.message}}' id='message' bindinput='bindinput' placeholder='{{tips}}'></textarea>
+      <textarea class='msg' value='{{json.message}}' id='message' bindinput='bindinput' placeholder='{{tips}}' disabled='{{disabled}}' focus='{{focus}}' catchtap='a' bindblur='b'></textarea>
     </view>
     <view class='bottom'>
        <button bindtap='save' class="weui-btn" type="primary" plain="true" style='margin-bottom: 10rpx;margin-left: 20rpx;margin-right: 20rpx'> 保存 </button>
     </view>
   </view>
+  <image catchtap='play' class="playButton" src="{{iconPath}}" background-size="cover"></image>
+   <image class="recordButton" src="./../../images/record.png" background-size="cover" bindtouchstart='start' bindtouchend='end'></image>
 </view>
+<!-- catchtap='play' -->
