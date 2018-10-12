@@ -101,11 +101,12 @@ Page({
             content: '您未授权使用录音功能',
             confirmText: '去授权',
             success: function (res) {
-              console.log("sdsds")
-              wx.openSetting({
-              })
-            },
-            fail: function (res) { },
+              console.log(res)
+              if (res.confirm) {
+                wx.openSetting({
+                })
+              }
+            }
           })
         }else{
           wx.navigateTo({
@@ -130,11 +131,12 @@ Page({
             content: '您未授权使用录音功能',
             confirmText: '去授权',
             success: function (res) {
-              console.log("sdsds")
-              wx.openSetting({
-              })
-            },
-            fail: function (res) { },
+              console.log(res)
+              if(res.confirm){
+                wx.openSetting({
+                })
+              } 
+            }
           })
         } else {
           wx.navigateTo({

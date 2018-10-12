@@ -17,10 +17,19 @@
           class="weui-btn" type='default' plain="true"> 注册 </button>
       <!-- <button class="weui-btn" type="primary" plain="true">按钮</button> -->
 
-      <button class='vertical' style='margin-top: 100rpx;background-color: white' open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+      <view style='display: flex;align-items:center;'>
+        <button style='margin-top: 100rpx;background: white' open-type="getUserInfo" bindgetuserinfo="getUserInfo" size='mini'>
+            <view class='vertical'>
+            <image class="userinfo-avatar" src="./../../images/wechat.png" background-size="cover"></image>
+            <text style='font-size: 30rpx'>微信登录</text>
+          </view>      
+        </button>
+      </view>
+    
+      <!-- <view class='vertical' style='margin-top: 100rpx;background-color: white' bindgetuserinfo="getUserInfo"  bindtap='getUserInfo'>
         <image class="userinfo-avatar" src="./../../images/wechat.png" background-size="cover"></image>
         <text style='font-size: 30rpx'>微信登录</text>
-      </button>
+      </view> -->
     </view>
   </form>
 </view>

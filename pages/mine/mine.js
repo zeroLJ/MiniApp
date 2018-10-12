@@ -131,15 +131,18 @@ Page({
     })
   },
   onShare: function(e){
-   wx.setTopBarText({
-     text: 'sdsdsd',
-     success: function(res) {},
-     fail: function(res) {},
-     complete: function(res) {console.log("sdsdsd")},
-   })
-   wx.showToast({
-     title: '待实现',
-     icon: 'none'
-   })
+  //  wx.setTopBarText({
+  //    text: 'sdsdsd',
+  //    success: function(res) {},
+  //    fail: function(res) {},
+  //    complete: function(res) {console.log("sdsdsd")},
+  //  })
+  //  wx.showToast({
+  //    title: '待实现',
+  //    icon: 'none'
+  //  })
+    wx.openSetting({
+      
+    })
   },
 })

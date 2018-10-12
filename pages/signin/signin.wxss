@@ -6,3 +6,5 @@
   margin-bottom: 20rpx;
   border-radius: 50%
 }
+
+button::after{ border: none}
