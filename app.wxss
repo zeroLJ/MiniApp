@@ -11,8 +11,7 @@
 } 
 
 .inputleft {
-  width: 150rpx;
-  margin-right: 20rpx;
+  width: 190rpx;
 }
 
 .inputright {

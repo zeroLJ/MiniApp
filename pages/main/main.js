@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+   
   },
 
   /**
@@ -47,6 +47,11 @@ Page({
         })
         console.log(that.data)
         console.log(json)
+
+        //录音功能授权
+        wx.authorize({
+          scope: 'scope.record',
+        })
       }
     })
   },
@@ -87,13 +92,60 @@ Page({
   },
   skip: function(e){
     var json = this.data.notes[e.currentTarget.id]
-    wx.navigateTo({
-      url: './../note/note?json=' + JSON.stringify(json)
+    wx.getSetting({
+      success: function(res) {
+        console.log(res)
+        if(!res.authSetting['scope.record']){
+          wx.showModal({
+            title: '',
+            content: '您未授权使用录音功能',
+            confirmText: '去授权',
+            success: function (res) {
+              console.log("sdsds")
+              wx.openSetting({
+              })
+            },
+            fail: function (res) { },
+          })
+        }else{
+          wx.navigateTo({
+            url: './../note/note?json=' + JSON.stringify(json)
+          })
+        }
+      },
+      fail: function(res) {},
     })
+   
+    // wx.navigateTo({
+    //   url: './../note/note?json=' + JSON.stringify(json)
+    // })
   },
   add: function(e){
-    wx.navigateTo({
-      url: './../note/note?json={}'
+    wx.getSetting({
+      success: function (res) {
+        console.log(res)
+        if (!res.authSetting['scope.record']) {
+          wx.showModal({
+            title: '',
+            content: '您未授权使用录音功能',
+            confirmText: '去授权',
+            success: function (res) {
+              console.log("sdsds")
+              wx.openSetting({
+              })
+            },
+            fail: function (res) { },
+          })
+        } else {
+          wx.navigateTo({
+            url: './../note/note?json={}'
+          })
+        }
+      },
+      fail: function (res) { },
     })
-  }
+    // wx.navigateTo({
+    //   url: './../note/note?json={}'
+    // })
+  },
 })

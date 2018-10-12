@@ -48,6 +48,13 @@ Page({
     console.log(e)
     //console.log(get)
     //app.globalData.userInfo = e.detail.userInfo
+    if (util.isEmpty(e.detail.userInfo)){
+      wx.showToast({
+        title: '获取用户信息失败',
+        icon: 'none'
+      })
+      return
+    }
     wx.login({
       success: function(res) {
         console.log(res)

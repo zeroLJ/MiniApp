@@ -3,17 +3,17 @@
   <form>
     <view  style='margin-left: 100rpx;margin-right: 100rpx'>
       <view class='horizontal'  style='margin-top: 200rpx'>
-        <text class='inputleft' >用户名:</text>
+        <text class='inputleft' style='width: 250rpx;'>用户名:</text>
         <input class='inputright' id='name' bindinput='bindinput'></input>
       </view>
     
       <view class='horizontal' style='margin-top: 40rpx'>
-        <text class='inputleft' >密  码:</text>
+        <text class='inputleft' style='width: 250rpx;'>密  码:</text>
         <input class='inputright' id='password' bindinput='bindinput' password='true'></input>
       </view>
 
       <view class='horizontal' style='margin-top: 40rpx'>
-        <text class='inputleft' style=' font-size: 30rpx' >确认密码:</text>
+        <text class='inputleft' style=' font-size: 30rpx' style='width: 250rpx;'>确认密码:</text>
         <input class='inputright' id='password_2' bindinput='bindinput' password='true'></input>
       </view>
       <button style='margin-top: 40rpx' bindtap='login'

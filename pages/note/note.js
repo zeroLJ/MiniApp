@@ -38,6 +38,9 @@ Page({
         message: json.message,
         title: json.title,
       })
+      wx.setNavigationBarTitle({
+        title: '编辑',
+      })
     }
     console.log(this.data)
   },
