@@ -37,6 +37,7 @@ App({
   globalData: {
     userInfo: null,
     name: null,
-    password: null
+    password: null,
+    nickname: null
   }
 })

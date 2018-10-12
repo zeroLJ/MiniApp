@@ -48,11 +48,44 @@ Page({
     console.log(e)
     //console.log(get)
     //app.globalData.userInfo = e.detail.userInfo
+    wx.login({
+      success: function(res) {
+        console.log(res)
+        app.globalData.code = res.code;
+        util.request({
+          url: 'SigninMiniApp',
+          data:{
+            code: res.code,
+            nickname: encodeURI(e.detail.userInfo.nickName),
+            iconUrl: encodeURI(e.detail.userInfo.avatarUrl),
+            gender: e.detail.userInfo.gender
+          },
+          msg: '正在登录',
+          success: function (json) {
+            app.globalData.name = json.resultMap.openid + "_mini"
+            app.globalData.password = json.resultMap.openid + "_mini"
+            app.globalData.nickname = json.resultMap.nickname
+            wx.setStorage({
+              key: 'user',
+              data: {
+                name: app.globalData.name,
+                password: app.globalData.password
+              },
+            })
+            wx.switchTab({
+              url: './../main/main',
+            })
+          }
+        })
+      },
+    })
+  },
+  signin: function(e){
     app.globalData.name = this.data.name
     app.globalData.password = this.data.password
     util.request({
-      url:'Signin',
-      msg:'正在登录',
+      url: 'Signin',
+      msg: '正在登录',
       success: function (json) {
         // wx.redirectTo({
         //   url: './../main/main',

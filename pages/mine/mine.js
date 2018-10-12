@@ -26,9 +26,6 @@ Page({
     var url = util.url + 'HeadIconGet';
     url = url + "?name=" + app.globalData.name
     url = url + "&password=" + app.globalData.password
-    this.setData({
-      nickname: app.globalData.name
-    })
     wx.downloadFile({
       url: url, 
       success(res) {
@@ -46,7 +43,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      nickname: util.isEmpty(app.globalData.nickname) ? app.globalData.name : app.globalData.nickname
+    })
   },
 
   /**
@@ -142,5 +141,5 @@ Page({
      title: '待实现',
      icon: 'none'
    })
-  }
+  },
 })

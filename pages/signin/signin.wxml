@@ -11,11 +11,16 @@
         <text class='inputleft' >密码：</text>
         <input class='inputright' value='{{password}}' id='password' bindinput='bindinput' password='true'></input>
       </view>
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" style='margin-top: 40rpx' 
+      <button style='margin-top: 40rpx' bindtap='signin'
           class="weui-btn" type="primary" plain="true" form-type='submit'> 登录 </button>
       <button style='margin-top: 40rpx' bindtap='skip'
           class="weui-btn" type='default' plain="true"> 注册 </button>
       <!-- <button class="weui-btn" type="primary" plain="true">按钮</button> -->
+
+      <button class='vertical' style='margin-top: 100rpx;background-color: white' open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <image class="userinfo-avatar" src="./../../images/wechat.png" background-size="cover"></image>
+        <text style='font-size: 30rpx'>微信登录</text>
+      </button>
     </view>
   </form>
 </view>

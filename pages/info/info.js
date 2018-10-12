@@ -110,6 +110,7 @@ Page({
     }
   },
   save: function(e){
+    var that = this
     util.request({
       url:'InfoUpdate',
       data: {
@@ -125,6 +126,7 @@ Page({
         wx.showToast({
           title: '保存成功',
         })
+        getApp().globalData.nickname = that.data.nickname
       }
     })
   }

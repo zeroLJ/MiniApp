@@ -32,6 +32,7 @@ Page({
         util.request({
           url: 'Signin',
           success: function (json) {
+            app.globalData.nickname = json.resultMap.nickname
             setTimeout(function(){
               wx.switchTab({
                 url: './../main/main',
