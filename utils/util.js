@@ -22,8 +22,8 @@ function isEmpty(str){
   }
 }
 
-
-const URL = 'https://jhonliu.club/VoiceNote/'
+const URL = 'http://localhost:8081/VoiceNote/'
+//const URL = 'https://jhonliu.club/VoiceNote/'
 function request(mapjson) {
   // res.showMsg != undefined && res.showMsg
   var showMsg = mapjson.msg
@@ -34,6 +34,7 @@ function request(mapjson) {
       title: '',
       content: 'url不能为空！',
     })
+    return
   }
   if(url.indexOf('https')!=0){
     url = URL + url
@@ -62,19 +63,11 @@ function request(mapjson) {
     responseType: 'text',
     success: function (res) {
       console.log('success:')
+      // console.log(res.data)
+      // console.log(res.header.data)
       //可根据后台返回的数据来取相应的字段
-      var a = decodeURIComponent(res.header.data)
-      // if (a.indexOf("+")>=0){
-      //   var b = "+"
-      //   a = a.replace(new RegExp(b), " ")
-      // }
-
-      //从后端传来的字符串中的空格会变成+号，故需替换回来
-      while (a.indexOf("+") >= 0) {
-        a = a.replace("+", " ")
-      }
-
-      var json = JSON.parse(a);
+      var json = res.data //由于dataType设置的为json，已自动调用JSON.parse()
+      // var json = JSON.parse(decodeURIComponent(res.header.data));
       if (json.success) {
         if(!isEmpty(mapjson.success)){
           mapjson.success(json)
